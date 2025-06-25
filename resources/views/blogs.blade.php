@@ -8,7 +8,10 @@
 
     @foreach ($blogs as $blog)
         <article>
-            <h2 class="blogtitle"><a href="/blogs/{{$blog->id}}">{{$blog->title}}</a></h2>
+            <h2 class="blogtitle"><a href="/blogs/{{$blog->slug}}">{{$blog->title}}</a></h2>
+            <p>written by <a href="/users/{{$blog->user->username}}"><strong>{{$blog->user->name}}</strong></a></p>
+            <p>published at - {{$blog->created_at->diffForHumans()}}</p>
+            <p><a href="/categories/{{$blog->category->slug}}">{{$blog->category->name}}</a></p>
             <p><strong>Intro:</strong>{{$blog->info}}</p>
         </article>
         <hr>

@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot name="title">
-        <title>blog</title>
+        <title>{{$blog->title}}</title>
     </x-slot>
     <article>
         <h2 class="blogtitle">{{ $blog->title }}</h2>

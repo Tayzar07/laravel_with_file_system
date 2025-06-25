@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Blog;
+use App\Models\Category;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +15,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::truncate();
+        Category::truncate();
+        Blog::truncate();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $laravel = Category::factory()->create([
+            'name' => 'Laravel',
+            'slug' => 'laravel',
         ]);
+        $php = Category::factory()->create([
+            'name' => 'PHP',
+            'slug' => 'php',
+        ]);
+        $js = Category::factory()->create([
+            'name' => 'JavaScript',
+            'slug' => 'javascript',
+        ]);
+        Blog::factory(3)->create([
+            'category_id' => $laravel->id,
+        ]);
+        Blog::factory(3)->create([
+            'category_id' => $php->id,
+        ]);
+        Blog::factory(3)->create([
+            'category_id' => $js->id,
+        ]);
+
     }
 }
