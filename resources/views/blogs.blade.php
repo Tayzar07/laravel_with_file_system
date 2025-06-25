@@ -8,8 +8,8 @@
 
     @foreach ($blogs as $blog)
         <article>
-            <h2 class="blogtitle"><a href="/blogs/{{$blog->slug}}">{{$blog->title}}</a></h2>
-            <p><strong>Intro:</strong>{{$blog->intro}}</p>
+            <h2 class="blogtitle"><a href="/blogs/{{$blog->id}}">{{$blog->title}}</a></h2>
+            <p><strong>Intro:</strong>{{$blog->info}}</p>
         </article>
         <hr>
     @endforeach
