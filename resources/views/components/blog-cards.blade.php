@@ -5,11 +5,11 @@
         <div class="card-body">
             <h3 class="card-title">{{ $blog->title }}</h3>
             <div>
-                <a class="me-2" href="/users/{{ $blog->author->username }}">{{ $blog->author->name }}</a>
+                <a class="me-2" href="/?user={{ $blog->author->username }}">{{ $blog->author->name }}</a>
                 <span class="text-secondary">{{ $blog->created_at->diffForHumans() }}</span>
             </div>
             <div class="tags my-3">
-                <a href="/categories/{{ $blog->category->slug }}"><span
+                <a href="/?category={{ $blog->category->slug }}"><span
                         class="badge bg-primary">{{ $blog->category->name }}</span></a>
             </div>
             <p class="card-text">

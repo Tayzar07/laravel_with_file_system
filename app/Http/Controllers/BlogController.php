@@ -13,7 +13,7 @@ class BlogController extends Controller
         // DB::listen(function ($query) {
         //     Log::info($query->sql);
         // });
-        return view('blogs', ['blogs' => Blog::latest()->filter(request(['search']))->get(), 'categories' => Category::all()]);
+        return view('blogs', ['blogs' => Blog::latest()->filter(request(['search','category','user']))->paginate(3)->withQueryString(), 'categories' => Category::all()]);
     }
 
     function show($slug)

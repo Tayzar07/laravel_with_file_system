@@ -1,25 +1,22 @@
-@props(['blogs', 'categories', 'currentCategory'])
+@props(['blogs'])
 <section class="container text-center" id="blogs">
     <h1 class="display-5 fw-bold mb-4">Blogs</h1>
     <div class="">
         {{-- filter by category dropdown --}}
-        <div class="dropdown">
-            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                {{ $currentCategory ? $currentCategory->name : 'Filter by Category' }}
-            </button>
-            <ul class="dropdown-menu">
-                @foreach ($categories as $category)
-                    <li><a class="dropdown-item" href="/categories/{{ $category->slug }}">{{ $category->name }}</a></li>
-                @endforeach
-            </ul>
-        </div>
+        <x-dropdown-category />
         {{-- <select name="" id="" class="p-1 rounded-pill mx-3">
                 <option value="">Filter by Tag</option>
             </select> --}}
     </div>
     <form action="" class="my-3">
         <div class="input-group mb-3">
+            @if (request('user'))
+                <input type="hidden" value="{{ request('user') }}" name="user" class="form-control" />
+            @endif
+            @if (request('category'))
+                <input type="hidden" value="{{ request('category') }}" name="category" class="form-control" />
+            @endif
+
             <input type="text" autocomplete="false" value="{{ request('search') }}" name="search"
                 class="form-control" placeholder="Search Blogs..." />
             <button class="input-group-text bg-primary text-light" id="basic-addon2" type="submit">
@@ -39,4 +36,5 @@
             </div>
         @endforelse
     </div>
+    {{$blogs->links()}}
 </section>
