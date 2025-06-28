@@ -13,12 +13,12 @@ class BlogController extends Controller
         // DB::listen(function ($query) {
         //     Log::info($query->sql);
         // });
-        return view('blogs', ['blogs' => Blog::latest()->filter(request(['search','category','user']))->paginate(3)->withQueryString(), 'categories' => Category::all()]);
+        return view('blogs.index', ['blogs' => Blog::latest()->filter(request(['search', 'category', 'user']))->paginate(3)->withQueryString(), 'categories' => Category::all()]);
     }
 
     function show($slug)
     {
-        return view('blog', ['blog' => Blog::without(['category', 'user'])->firstwhere('slug', $slug), 'randomBlogs' => Blog::inRandomOrder()->take(3)->get()]);
+        return view('blogs.show', ['blog' => Blog::without(['category', 'user'])->firstwhere('slug', $slug), 'randomBlogs' => Blog::inRandomOrder()->take(3)->get()]);
     }
 
     // protected function getBlogs(){
