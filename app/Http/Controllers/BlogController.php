@@ -16,9 +16,9 @@ class BlogController extends Controller
         return view('blogs.index', ['blogs' => Blog::latest()->filter(request(['search', 'category', 'user']))->paginate(3)->withQueryString(), 'categories' => Category::all()]);
     }
 
-    function show($slug)
+    function show(Blog $blog)
     {
-        return view('blogs.show', ['blog' => Blog::without(['category', 'user'])->firstwhere('slug', $slug), 'randomBlogs' => Blog::inRandomOrder()->take(3)->get()]);
+        return view('blogs.show', ['blog' => $blog, 'randomBlogs' => Blog::inRandomOrder()->take(3)->get(),'comments' => $blog->comments()->latest()->get()]);
     }
 
     // protected function getBlogs(){
