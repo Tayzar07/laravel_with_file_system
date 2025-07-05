@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
+        'isAdmin',
         'email',
         'password',
     ];
@@ -51,6 +52,16 @@ class User extends Authenticatable
     public function blogs()
     {
         return $this->hasMany(Blog::class);
+    }
+
+    public function subscribeBlogs()
+    {
+        return $this->belongsToMany(Blog::class);
+    }
+
+    public function isSubscribe(Blog $blog)
+    {
+        return auth()->user()->subscribeBlogs && auth()->user()->subscribeBlogs->contains($blog);
     }
 
 

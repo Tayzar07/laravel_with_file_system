@@ -3,6 +3,9 @@
         <a class="navbar-brand" href="/">Creative Coder</a>
         <div class="d-flex align-items-center">
          @auth
+         @if (auth()->user()->isAdmin)
+             <a class="nav-link" href="/admin">Admin</a>
+         @endif
              <a class="nav-link" href="#">{{ auth()->user()->name }}</a>
              <form action="/logout" method="POST" class="d-inline">
                 @csrf

@@ -5,9 +5,15 @@
 {{-- Each comment will be displayed using the x-single-comment component --}}
 <section class="container">
     <div class="col-md-8 mx-auto">
-        <h5 class="my-3  text-secondary">Comments ({{ $comments->count() }})</h5>
-        @foreach ($comments as $comment)
+        @if ($comments->count())
+            <h5 class="my-3  text-secondary">Comments ({{ $comments->count() }})</h5>
+        @endif
+        @forelse ($comments as $comment)
             <x-single-comment :comment="$comment" />
-        @endforeach
+        @empty
+            <p class="text-muted text-center">No comments yet.</p>
+        @endforelse
+        {{-- Pagination links for comments --}}
+        {{ $comments->links() }}
     </div>
 </section>
