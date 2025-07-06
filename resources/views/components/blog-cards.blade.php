@@ -1,6 +1,6 @@
 @props(['blog'])
     <div class="card">
-        <img src="https://creativecoder.s3.ap-southeast-1.amazonaws.com/blogs/GOLwpsybfhxH0DW8O6tRvpm4jCR6MZvDtGOFgjq0.jpg"
+        <img src="{{ $blog->thumbnail ? asset('storage/' . $blog->thumbnail) : 'https://creativecoder.s3.ap-southeast-1.amazonaws.com/blogs/GOLwpsybfhxH0DW8O6tRvpm4jCR6MZvDtGOFgjq0.jpg'}}"
             class="card-img-top" alt="..." />
         <div class="card-body">
             <h3 class="card-title">{{ $blog->title }}</h3>

@@ -15,6 +15,7 @@ class Blog extends Model
         'user_id',
         'info',
         'body',
+        'thumbnail',
     ];
 
     protected $with = ['category', 'author'];

@@ -20,9 +20,12 @@ Route::post('/logout',[AuthController::class, 'logout'])->middleware('auth');
 Route::post('/blogs/{blog:slug}/comments',[BlogController::class, 'storeComment'])->middleware('auth');
 Route::post('/blogs/{blog:slug}/subscribe',[BlogController::class, 'subscribeHandler'])->middleware('auth');
 
-Route::view('/admin', 'admin.dashboard')->middleware('admin');
+Route::get('/admin', [AdminController::class, 'dashboard'])->middleware('admin');
 Route::get('/admin/blog/create',[AdminController::class, 'create'])->middleware('admin');
 Route::post('/admin/blog/store',[AdminController::class, 'store'])->middleware('admin');
+Route::post('/admin/blog/{blog:slug}/delete', [AdminController::class, 'destroy'])->middleware('admin');
+Route::get('/admin/blog/{blog:slug}/edit', [AdminController::class, 'edit'])->middleware('admin');
+Route::post('/admin/blog/{blog:slug}/update', [AdminController::class, 'update'])->middleware('admin');
 
 
 
